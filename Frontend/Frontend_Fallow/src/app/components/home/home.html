@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+
+<section class="relative h-[80vh] w-full overflow-hidden bg-[#F5F2EE] font-minimal">
+  <div class="absolute inset-0">
+    <img 
+      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" 
+      alt="Fallow Fashion Hero" 
+      class="h-full w-full object-cover object-center scale-105 animate-fade-in"
+    >
+    <div class="absolute inset-0 bg-[#3D322A]/20"></div>
+  </div>
+
+  <div class="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-start">
+    <div class="max-w-xl space-y-6">
+      
+      <span class="inline-block text-[10px] uppercase tracking-[0.4em] text-[#F5F2EE] font-medium bg-[#3D322A]/40 backdrop-blur-sm px-4 py-1 rounded-full">
+        Nueva Colección 2026
+      </span>
+
+      <h2 class="text-5xl md:text-7xl font-extralight text-white leading-tight tracking-[0.1em] uppercase">
+        Moda con <br> <span class="font-normal italic">historia.</span>
+      </h2>
+
+      <p class="text-[#F5F2EE] text-sm md:text-base font-light tracking-widest max-w-sm leading-relaxed">
+        Curaduría exclusiva de prendas de segunda mano para quienes buscan un estilo único y sostenible.
+      </p>
+
+      <div class="pt-4">
+        <button class="group relative px-10 py-4 bg-[#F5F2EE] text-[#3D322A] overflow-hidden transition-all duration-300 hover:text-white border border-[#E5E0D8]">
+          <span class="relative z-10 text-[10px] uppercase tracking-[0.3em] font-semibold">Explorar Colección</span>
+          <div class="absolute inset-0 bg-[#3D322A] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-50">
+    <span class="text-[8px] uppercase tracking-[0.3em] text-white">Scroll</span>
+    <div class="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"></div>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-20 font-minimal bg-[#FDFCFB]">
+  <div class="flex items-end justify-between mb-12 border-b border-[#E5E0D8] pb-6">
+  <div>
+    <h3 class="text-2xl font-light uppercase tracking-[0.3em] text-[#3D322A]">Recién Llegados</h3>
+    <p class="text-[10px] uppercase tracking-widest text-[#8C7B70] mt-2">Curaduría de esta semana</p>
+  </div>
+  
+  <a href="#" class="group relative inline-block text-[10px] uppercase tracking-widest font-semibold text-[#3D322A] pb-1 transition-colors hover:text-[#8C7B70]">
+    Ver todo
+    
+    <span class="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#3D322A] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+</div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+  <div *ngFor="let producto of productos" 
+    [routerLink]="['/producto', producto.id_producto]" 
+    class="group cursor-pointer">
+    <div class="relative aspect-[3/4] overflow-hidden bg-[#F5F2EE] mb-4 border border-[#F5F2EE]">
+      <img [src]="producto.imagen_url" 
+           [alt]="producto.nombre"
+           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+      
+      <span class="absolute top-4 left-4 bg-[#FDFCFB]/90 backdrop-blur-sm px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-medium text-[#3D322A] shadow-sm">
+        {{ producto.estado_prenda }}
+      </span>
+
+      <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-[#3D322A]/20 to-transparent">
+        <button class="w-full bg-[#F5F2EE] text-[#3D322A] py-3 text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#3D322A] hover:text-white transition-colors border border-[#E5E0D8]">
+          Añadir al carrito
+        </button>
+      </div>
+    </div>
+    </div>
+</div>
+</main>
+
+<app-footer></app-footer>

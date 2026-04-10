@@ -1,0 +1,67 @@
+<nav class="bg-[#F5F2EE] sticky top-0 z-50 border-b border-[#E5E0D8] font-minimal">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    
+    <div class="hidden md:flex items-center space-x-10">
+  <a [routerLink]="['/home']" [queryParams]="{ cat: 'dama' }" 
+     class="group relative text-[11px] uppercase tracking-[0.3em] text-[#5C4D42] hover:text-[#3D322A] transition-colors font-medium">
+    Dama
+    <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#5C4D42] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+
+  <a [routerLink]="['/home']" [queryParams]="{ cat: 'caballero' }" 
+     class="group relative text-[11px] uppercase tracking-[0.3em] text-[#5C4D42] hover:text-[#3D322A] transition-colors font-medium">
+    Caballero
+    <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#5C4D42] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+
+  <a [routerLink]="['/home']" 
+     class="group relative text-[11px] uppercase tracking-[0.3em] text-[#5C4D42] hover:text-[#3D322A] transition-colors font-medium">
+    Todo
+    <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#5C4D42] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+</div>
+
+    <div class="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center group cursor-pointer" routerLink="/home">
+      <div class="text-3xl font-light tracking-[0.5em] uppercase text-[#3D322A]">
+        Fallow
+      </div>
+      <div class="text-[7px] tracking-[0.4em] uppercase text-[#8C7B70] -mt-1 font-semibold">
+        Ropa de segunda mano
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-8 text-[#5C4D42]">
+  <div class="flex items-center border-b border-[#E5E0D8] px-2 py-1 focus-within:border-[#3D322A] transition-colors">
+  <input 
+    type="text" 
+    [(ngModel)]="terminoBusqueda"
+    (keyup.enter)="buscar()"
+    placeholder="BUSCAR..."
+    class="bg-transparent border-none text-[10px] tracking-[0.2em] uppercase focus:outline-none w-24 md:w-32 placeholder-[#A69586] text-[#3D322A]">
+  
+  <button (click)="buscar()" class="hover:text-[#3D322A] transition-colors ml-2">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-4 h-4">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+    </svg>
+  </button>
+</div>
+
+  <button routerLink="/carrito" class="relative hover:text-[#3D322A] transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+    </svg>
+    <span *ngIf="cantidadCarrito > 0" class="absolute -top-1.5 -right-2 bg-[#3D322A] text-white text-[7px] w-3.5 h-3.5 flex items-center justify-center rounded-full font-bold">
+      {{ cantidadCarrito }}
+    </span>
+  </button>
+
+  @if (estaLogueado) {
+  <button (click)="cerrarSesion()" class="hover:text-[#8C7B70] transition-colors" title="Cerrar Sesión">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+    </svg>
+  </button>
+  }
+</div>
+  </div>
+</nav>

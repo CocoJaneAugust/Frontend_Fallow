@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<div class="bg-[#FDFCFB] min-h-screen font-minimal">
+  @if (producto) {
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+  <div class="bg-[#F5F2EE] aspect-[3/4] overflow-hidden border border-[#E5E0D8]">
+    <img [src]="producto.imagen_url" [alt]="producto.nombre" class="w-full h-full object-cover shadow-sm">
+  </div>
+
+  <div class="flex flex-col justify-center space-y-8">
+    <div>
+      <p class="text-[10px] uppercase tracking-[0.4em] text-[#8C7B70] mb-2 font-medium">
+        {{ producto.marca }} • {{ producto.estado_prenda }} • {{ producto.talla }}
+      </p>
+      <h1 class="text-4xl font-light uppercase tracking-widest text-[#3D322A]">
+        {{ producto.nombre }}
+      </h1>
+      <p class="text-2xl font-bold mt-4 text-[#5C4D42] tracking-wider">${{ producto.precio }}</p>
+    </div>
+
+    <div class="pt-4">
+  <button (click)="agregarAlCarrito()" 
+          class="group relative w-full py-5 bg-[#F5F2EE] text-[#3D322A] overflow-hidden transition-all duration-300 border border-[#E5E0D8] shadow-sm">
+    
+    <span class="relative z-10 text-[10px] uppercase tracking-[0.4em] font-bold group-hover:text-white transition-colors duration-300">
+      Añadir al Carrito
+    </span>
+
+    <div class="absolute inset-0 bg-[#3D322A] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+  </button>
+</div> 
+    </div>
+
+
+
+<div class="pt-6 border-t border-[#E5E0D8] flex items-center space-x-6 text-[9px] uppercase tracking-[0.2em] text-[#A69586]">
+  <span class="flex items-center">✨ Calidad Premium</span>
+  <span class="flex items-center">📦 Envío Sostenible</span>
+</div>
+</div>
+    </main>
+  } @else {
+    <div class="h-screen flex items-center justify-center bg-[#FDFCFB]">
+      <p class="uppercase tracking-[0.5em] text-[#8C7B70] animate-pulse font-light">Cargando prenda...</p>
+    </div>
+  }
+</div>
+
+<app-footer></app-footer>

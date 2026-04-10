@@ -1,0 +1,53 @@
+<div class="min-h-screen bg-[#FDFCFB] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-minimal">
+  
+  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+    <h1 class="text-4xl font-light tracking-[0.4em] uppercase text-[#3D322A]">Fallow</h1>
+    <p class="text-[#A69586] mt-2 text-[9px] uppercase tracking-[0.5em] font-medium">Ropa de segunda mano</p>
+    
+    <h2 class="mt-12 text-xl font-light text-[#5C4D42] uppercase tracking-widest">Bienvenido de vuelta</h2>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-10 px-6 shadow-[0_10px_40px_-15px_rgba(92,77,66,0.1)] border border-[#E5E0D8] rounded-sm sm:px-12">
+      
+      <form class="space-y-8">
+  <div>
+    <label class="block text-[10px] uppercase tracking-widest font-semibold text-[#8C7B70] mb-2">Email</label>
+    <input type="email" name="correo" [(ngModel)]="user.correo" required 
+           class="appearance-none block w-full px-4 py-3 border-b border-[#E5E0D8] text-[#3D322A] placeholder-[#D6CFC7] focus:outline-none focus:border-[#5C4D42] transition-colors sm:text-sm bg-[#FAF9F8]" 
+           placeholder="ejemplo@fallow.com">
+  </div>
+
+  <div>
+    <label class="block text-[10px] uppercase tracking-widest font-semibold text-[#8C7B70] mb-2">Contraseña</label>
+    <input type="password" name="password" [(ngModel)]="user.password" required 
+           class="appearance-none block w-full px-4 py-3 border-b border-[#E5E0D8] text-[#3D322A] placeholder-[#D6CFC7] focus:outline-none focus:border-[#5C4D42] transition-colors sm:text-sm bg-[#FAF9F8]" 
+           placeholder="••••••••">
+  </div>
+
+  <p *ngIf="errorMessage" class="text-red-500 text-[9px] uppercase tracking-[0.2em] mt-2 text-center animate-pulse">
+    {{ errorMessage }}
+  </p>
+
+  <div class="pt-2">
+    <button type="button" (click)="onLogin()"
+            class="group relative w-full py-4 px-4 bg-[#F5F2EE] text-[#3D322A] overflow-hidden transition-all duration-300 border border-[#E5E0D8] shadow-sm">
+      <span class="relative z-10 text-[10px] uppercase tracking-[0.4em] font-bold group-hover:text-white transition-colors duration-300">
+        Ingresar
+      </span>
+      <div class="absolute inset-0 bg-[#3D322A] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+    </button>
+  </div>
+</form>
+      <div class="mt-12 text-center">
+  <p class="text-[9px] uppercase tracking-[0.2em] text-[#A69586] mb-4">¿No tienes cuenta?</p>
+  
+  <a href="#" class="group relative inline-block text-[10px] font-bold text-[#3D322A] uppercase tracking-widest pb-1 transition-colors hover:text-[#8C7B70]">
+    Registrate ahora
+    
+    <span class="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#3D322A] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+</div>
+    </div>
+  </div>
+</div>
