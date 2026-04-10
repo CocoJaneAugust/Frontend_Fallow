@@ -1,0 +1,11 @@
+# Dependencias
+node_modules/
+npm-debug.log
+
+# Entorno y Secretos (Muy importante si luego usas .env)
+.env
+.vscode/
+
+# Logs
+logs
+*.log
