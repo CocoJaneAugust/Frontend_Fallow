@@ -20,11 +20,41 @@ export class Navbar implements OnInit {
     private router: Router // Inyectar Router
   ) {}
 
+  nombreUsuario: string = '';
+  saludo: string = '';
+
   ngOnInit() {
+    this.obtenerDatosUsuario();
     this.cartService.cartCount$.subscribe(count => {
       this.cantidadCarrito = count;
     });
   }
+
+ obtenerDatosUsuario() {
+    const usuarioJson = localStorage.getItem('usuario');
+    if (usuarioJson) {
+      const usuario = JSON.parse(usuarioJson);
+      // Extraemos el nombre. Si no existe, usamos 'Invitado'
+      this.nombreUsuario = usuario.nombre || 'Usuario'; 
+      this.establecerSaludo();
+    }
+  }
+
+  establecerSaludo() {
+    const hora = new Date().getHours();
+    if (hora >= 5 && hora < 12) {
+      this.saludo = 'Buenos días';
+    } else if (hora >= 12 && hora < 19) {
+      this.saludo = 'Buenas tardes';
+    } else {
+      this.saludo = 'Buenas noches';
+    }
+  }
+
+  get estaLogueado(): boolean {
+    return localStorage.getItem('usuario') !== null;
+  }
+
 
   cerrarSesion() {
     // 1. Borramos los datos del usuario
@@ -36,10 +66,6 @@ export class Navbar implements OnInit {
     // 3. Redirigimos al Login
     this.router.navigate(['/login']);
   }
-
-  get estaLogueado(): boolean {
-  return localStorage.getItem('usuario') !== null;
-}
 
 buscar() {
   if (this.terminoBusqueda.trim()) {

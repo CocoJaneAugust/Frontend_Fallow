@@ -1,43 +1,43 @@
 <app-navbar></app-navbar>
 
-<section class="relative h-[80vh] w-full overflow-hidden bg-[#F5F2EE] font-minimal">
-  <div class="absolute inset-0">
-    <img 
-      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" 
-      alt="Fallow Fashion Hero" 
-      class="h-full w-full object-cover object-center scale-105 animate-fade-in"
-    >
-    <div class="absolute inset-0 bg-[#3D322A]/20"></div>
+<section class="relative h-[80vh] w-full overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    @for (imagen of imagenes; track $index) {
+      <div class="absolute inset-0 bg-black/10 z-0"></div> 
+      <img 
+        [src]="imagen.url" 
+        [alt]="imagen.alt"
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+        [class.opacity-100]="$index === imagenActivaIndex"
+        [class.opacity-0]="$index !== imagenActivaIndex">
+    }
   </div>
 
-  <div class="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-start">
-    <div class="max-w-xl space-y-6">
-      
-      <span class="inline-block text-[10px] uppercase tracking-[0.4em] text-[#F5F2EE] font-medium bg-[#3D322A]/40 backdrop-blur-sm px-4 py-1 rounded-full">
-        Nueva Colección 2026
+  <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6">
+    <span class="inline-block bg-[#3D322A]/10 backdrop-blur-sm text-[#3D322A] text-[9px] px-3 py-1 rounded-full uppercase tracking-[0.3em] font-bold mb-6 w-fit">
+      Nueva Colección 2026
+    </span>
+    <h1 class="text-6xl md:text-8xl font-light tracking-tighter text-[#3D322A] leading-none mb-8">
+      MODA CON<br><span class="font-serif italic">HISTORIA.</span>
+    </h1>
+    <p class="max-w-md text-[#5C4D42] text-sm leading-relaxed tracking-wide mb-10 opacity-80">
+      Curaduría exclusiva de prendas de segunda mano para quienes buscan un estilo único y sostenible.
+    </p>
+    <button routerLink="/home" class="group relative w-fit px-12 py-5 bg-[#3D322A] text-[#F5F2EE] overflow-hidden transition-all duration-300">
+      <span class="relative z-10 text-[10px] uppercase tracking-[0.4em] font-bold group-hover:text-[#3D322A] transition-colors">
+        Explorar Colección
       </span>
-
-      <h2 class="text-5xl md:text-7xl font-extralight text-white leading-tight tracking-[0.1em] uppercase">
-        Moda con <br> <span class="font-normal italic">historia.</span>
-      </h2>
-
-      <p class="text-[#F5F2EE] text-sm md:text-base font-light tracking-widest max-w-sm leading-relaxed">
-        Curaduría exclusiva de prendas de segunda mano para quienes buscan un estilo único y sostenible.
-      </p>
-
-      <div class="pt-4">
-        <button class="group relative px-10 py-4 bg-[#F5F2EE] text-[#3D322A] overflow-hidden transition-all duration-300 hover:text-white border border-[#E5E0D8]">
-          <span class="relative z-10 text-[10px] uppercase tracking-[0.3em] font-semibold">Explorar Colección</span>
-          <div class="absolute inset-0 bg-[#3D322A] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-        </button>
-      </div>
-
-    </div>
+      <div class="absolute inset-0 bg-[#F5F2EE] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+    </button>
   </div>
 
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-50">
-    <span class="text-[8px] uppercase tracking-[0.3em] text-white">Scroll</span>
-    <div class="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-10 left-6 z-20 flex space-x-3">
+    @for (img of imagenes; track $index) {
+      <div class="h-[2px] transition-all duration-500"
+           [class.w-12]="$index === imagenActivaIndex" [class.bg-[#3D322A]]="$index === imagenActivaIndex"
+           [class.w-6]="$index !== imagenActivaIndex" [class.bg-[#3D322A]/30]="$index !== imagenActivaIndex">
+      </div>
+    }
   </div>
 </section>
 

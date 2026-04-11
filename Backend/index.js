@@ -25,48 +25,54 @@ db.connect((err) => {
 
 // NUEVA RUTA: Obtener productos desde la BD
 app.get('/api/productos', (req, res) => {
-  const categoria = req.query.categoria; // Leemos ?categoria=dama
+  const { categoria, sub } = req.query;
   let query = 'SELECT * FROM productos WHERE disponible = TRUE';
   let params = [];
 
   if (categoria) {
-    // Usamos un JOIN para filtrar por el nombre de la categoría que está en la otra tabla
     query += ' AND id_categoria IN (SELECT id_categoria FROM categorias WHERE nombre_categoria = ?)';
     params.push(categoria);
   }
+  
+  // NUEVO: Filtro por subcategoría (asegúrate de tener esta columna en tu BD)
+  if (sub) {
+    query += ' AND subcategoria = ?';
+    params.push(sub);
+  }
 
   db.query(query, params, (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
+    if (err) return res.status(500).json(err);
     res.json(results);
   });
 });
 
 
-// Para iniciar sesión, Angular envía 'correo' y 'password', pero en MySQL la columna se llama 'contraseña'. Por eso, en el query usamos 'contraseña' pero en el código usamos 'password' para que coincida con lo que envía Angular.
 app.post('/api/login', (req, res) => {
-  console.log('--- Intento de Login ---');
-  console.log('Cuerpo recibido:', req.body);
-  
-  // Extraemos 'password' porque así lo envía Angular
   const { correo, password } = req.body; 
   
-  // Usamos 'contraseña' en el query porque así se llama en tu MySQL
+  // Mantenemos tu query que ya trae el nombre
   const query = 'SELECT id_usuario, nombre, correo, rol FROM usuarios WHERE correo = ? AND contraseña = ?';
 
   db.query(query, [correo, password], (err, results) => {
     if (err) {
-      console.error('Error en SQL:', err);
       return res.status(500).json({ auth: false, message: 'Error en el servidor' });
     }
 
     if (results.length > 0) {
-      console.log('Login exitoso para:', results[0].nombre);
+      const user = results[0];
+      console.log('Login exitoso para:', user.nombre);
+
+      // Enviamos auth y el objeto usuario completo
       res.json({ 
         auth: true, 
-        usuario: results[0] 
+        usuario: {
+          id_usuario: user.id_usuario,
+          nombre: user.nombre, // Este es el que usará el saludo
+          correo: user.correo,
+          rol: user.rol
+        }
       });
     } else {
-      console.log('Credenciales incorrectas para:', correo);
       res.status(401).json({ 
         auth: false, 
         message: 'Correo o contraseña incorrectos' 
@@ -74,7 +80,6 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
-
 
 //API para crear un nuevo pedido. Recibe id_usuario, total y un array de productos con id_producto y precio. Para el cart
 app.post('/api/pedidos', (req, res) => {
