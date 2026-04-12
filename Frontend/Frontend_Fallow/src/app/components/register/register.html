@@ -1,0 +1,46 @@
+<div class="min-h-screen bg-[#F5F2EE] flex items-center justify-center px-6 py-12">
+  <div class="max-w-md w-full bg-white border border-[#E5E0D8] p-10 shadow-sm">
+    
+    <div class="text-center mb-10">
+      <h2 class="text-2xl font-light tracking-[0.4em] uppercase text-[#3D322A]">Crear Cuenta</h2>
+      <p class="text-[10px] tracking-[0.2em] uppercase text-[#8C7B70] mt-2">Únete a la comunidad Fallow</p>
+    </div>
+
+    <form (submit)="onRegister()" class="space-y-6">
+      <div>
+        <label class="block text-[9px] uppercase tracking-[0.2em] text-[#8C7B70] mb-2">Nombre Completo</label>
+        <input type="text" [(ngModel)]="newUser.nombre" name="nombre" required
+          class="w-full bg-transparent border-b border-[#E5E0D8] py-2 text-sm focus:outline-none focus:border-[#3D322A] transition-colors text-[#3D322A]">
+      </div>
+
+      <div>
+        <label class="block text-[9px] uppercase tracking-[0.2em] text-[#8C7B70] mb-2">Correo Electrónico</label>
+        <input type="email" [(ngModel)]="newUser.correo" name="correo" required
+          class="w-full bg-transparent border-b border-[#E5E0D8] py-2 text-sm focus:outline-none focus:border-[#3D322A] transition-colors text-[#3D322A]">
+      </div>
+
+      <div>
+        <label class="block text-[9px] uppercase tracking-[0.2em] text-[#8C7B70] mb-2">Contraseña</label>
+        <input type="password" [(ngModel)]="newUser.password" name="password" required
+          class="w-full bg-transparent border-b border-[#E5E0D8] py-2 text-sm focus:outline-none focus:border-[#3D322A] transition-colors text-[#3D322A]">
+      </div>
+
+      <button type="submit" 
+        class="group relative w-full py-4 px-4 bg-[#F5F2EE] text-[#3D322A] overflow-hidden transition-all duration-300 border border-[#E5E0D8] shadow-sm">
+      <span class="relative z-10 text-[10px] uppercase tracking-[0.4em] font-bold group-hover:text-white transition-colors duration-300">
+        Registrarme
+      </span>
+      <div class="absolute inset-0 bg-[#3D322A] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+      </button>
+    </form>
+
+    <div class="mt-10 text-center">
+      <p class="text-[9px] tracking-[0.2em] text-[#8C7B70] uppercase">¿Ya tienes cuenta?</p>
+      <a routerLink="/login" class="group relative inline-block text-[10px] font-bold text-[#3D322A] uppercase tracking-widest pb-1 transition-colors hover:text-[#8C7B70]">
+    Iniciar Sesión
+    
+    <span class="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#3D322A] transition-all duration-300 group-hover:w-full"></span>
+  </a>
+    </div>
+  </div>
+</div>

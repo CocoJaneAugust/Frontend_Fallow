@@ -153,7 +153,6 @@ app.get('/api/productos/buscar', (req, res) => {
   const termino = req.query.q;
   const valor = `%${termino}%`;
 
-  // Asegúrate de que los nombres de las columnas coincidan con tu tabla productos
   const query = `
     SELECT * FROM productos 
     WHERE disponible = TRUE 
@@ -163,6 +162,22 @@ app.get('/api/productos/buscar', (req, res) => {
   db.query(query, [valor, valor, valor], (err, results) => {
     if (err) return res.status(500).json(err);
     res.json(results);
+  });
+});
+
+//Para registrar un nuevo usuario. Recibe nombre, correo, password y rol (opcional, por defecto 'cliente')
+app.post('/api/registro', (req, res) => {
+  const { nombre, correo, password, rol } = req.body;
+  
+  // Usamos 'contraseña' porque así se llama en tu tabla de MySQL
+  const query = 'INSERT INTO usuarios (nombre, correo, contraseña, rol) VALUES (?, ?, ?, ?)';
+  
+  db.query(query, [nombre, correo, password, rol || 'cliente'], (err, result) => {
+    if (err) {
+      console.error('Error al registrar usuario:', err);
+      return res.status(500).json({ success: false, message: 'Error al registrar' });
+    }
+    res.json({ success: true, message: 'Usuario creado correctamente', id: result.insertId });
   });
 });
 

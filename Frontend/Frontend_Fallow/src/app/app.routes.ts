@@ -4,6 +4,7 @@ import { Home } from './components/home/home';
 import { Navbar } from './components/navbar/navbar';
 import { ProductDetailComponent } from './components/product-detail/product-detail';
 import { Cart } from './components/cart/cart';
+import { Register } from './components/register/register';
 
 export const routes: Routes = [
 
@@ -28,6 +29,10 @@ export const routes: Routes = [
      
     { path: 'carrito', 
         component: Cart 
+    },
+
+    { path: 'register',
+      component: Register
     }
-    
+
 ];
