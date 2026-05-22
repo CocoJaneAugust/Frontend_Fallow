@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router'; // Para leer el ID de la URL
+import { ActivatedRoute, RouterModule} from '@angular/router'; // Para leer el ID de la URL
 import { ProductoService } from '../../services/producto';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, Navbar, Footer],
+  imports: [CommonModule, Navbar, Footer, RouterModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css'
 })

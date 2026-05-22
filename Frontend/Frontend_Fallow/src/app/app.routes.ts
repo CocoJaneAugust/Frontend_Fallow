@@ -5,8 +5,14 @@ import { Navbar } from './components/navbar/navbar';
 import { ProductDetailComponent } from './components/product-detail/product-detail';
 import { Cart } from './components/cart/cart';
 import { Register } from './components/register/register';
+import { Checkout } from './components/checkout/checkout';
 
 export const routes: Routes = [
+
+    { path: '', 
+      redirectTo: 'home', 
+      pathMatch: 'full' 
+    },
 
     {
         path:'login',
@@ -33,6 +39,14 @@ export const routes: Routes = [
 
     { path: 'register',
       component: Register
+    },
+
+    { path: 'checkout', 
+      component: Checkout 
+    },
+
+    { path: '**', 
+      redirectTo: 'home' 
     }
 
 ];
